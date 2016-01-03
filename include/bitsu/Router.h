@@ -7,9 +7,9 @@
 
 namespace bitsu {
 
-template <typename T> class Router {
+template <typename HandleType> class Router {
 public:
-  Router(const std::unordered_map<std::string, T> &routes) {
+  Router(const std::unordered_map<std::string, HandleType> &routes) {
     for (auto route : routes) {
       this->routes[route.first] = route.second;
     }
@@ -23,6 +23,6 @@ public:
   }
 
 private:
-  radix_tree<std::string, T> routes;
+  radix_tree<std::string, HandleType> routes;
 };
 }
