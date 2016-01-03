@@ -15,7 +15,9 @@ flags = [
     '-I',
     '.',
     '-I',
-    'include'
+    'include',
+    '-I',
+    'opt/radix_tree'
 ]
 
 SOURCE_EXTENSIONS = ['.cpp', '.cc', '.c']

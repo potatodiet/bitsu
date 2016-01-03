@@ -3,6 +3,7 @@ project(bitsu CXX)
 
 add_subdirectory(src)
 include_directories(include)
+include_directories(opt/radix_tree)
 
 add_library(
   bitsu
