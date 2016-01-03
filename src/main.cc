@@ -1,16 +1,12 @@
-#include "bitsu/Route.h"
 #include "bitsu/Router.h"
+#include <functional>
 #include <iostream>
-#include <vector>
+#include <unordered_map>
 
 int main() {
-  typedef void(CallbackType)();
-
-  bitsu::Route<CallbackType> exampleRoute;
-  exampleRoute.path = "/book/new/";
-  exampleRoute.callback = []() { std::cout << "test\n"; };
-
-  bitsu::Router<CallbackType> router({exampleRoute});
+  std::unordered_map<std::string, std::function<void()>> routes;
+  routes["/book/new/"] = []() { std::cout << "test\n"; };
+  bitsu::Router<std::function<void()>> router(routes);
   router.checkRoutes("/book/new/");
   return 0;
 }

@@ -1,23 +1,22 @@
 #pragma once
 
-#include "bitsu/Route.h"
 #include <string>
-#include <vector>
+#include <unordered_map>
 
 namespace bitsu {
 
 template <typename T> class Router {
 public:
-  Router(const std::vector<Route<T>> &routes) : routes(routes){};
+  Router(const std::unordered_map<std::string, T> &routes) : routes(routes){};
   void checkRoutes(const std::string &basePath) {
     for (auto route : routes) {
-      if (basePath == route.path) {
-        route.callback();
+      if (basePath == route.first) {
+        route.second();
       }
     }
   }
 
 private:
-  const std::vector<Route<T>> routes;
+  const std::unordered_map<std::string, T> routes;
 };
 }
